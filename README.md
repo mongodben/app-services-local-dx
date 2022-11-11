@@ -11,6 +11,13 @@ How it works:
 **Note**: This was only tested with my VSCode set up, with my plugins. Not sure how it'd work in other editors.
 I assume it'll work with most other JavaScript developers' setups, but should be tested out.
 
+## Usage
+
+1. Clone this repo `git clone https://github.com/mongodben/app-services-local-dx.git`
+1. Open project in VSCode
+1. Go to file `app-services-function-example.js`
+1. You should see ESLint applying rules and VSCode Intellisense working
+
 ## Files
 
 - `tsconfig.js` - TypeScript config, specifying that runs on standard JS files
