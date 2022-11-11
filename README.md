@@ -22,10 +22,18 @@ I assume it'll work with most other JavaScript developers' setups, but should be
 
 - `tsconfig.js` - TypeScript config, specifying that runs on standard JS files
 - `app-services-globals.d.ts` - TypeScript definitions for global variables.
-  used by `tsconfig.js` and applied to ``app-services-function-example.js`.
+  used by `tsconfig.js` and applied to `app-services-function-example.js`.
 - `.eslintrc.js` - ESLint config, specifying custom globals and runtime rules
 - `app-services-function-example.js` - example function file showing ESLlint working
 
 All these files are annotated with comments showing what's going on.
 
 You can find all relevant code by searching for comments beginning with `LOOK_AT_ME:`.
+
+## Potential Next Steps
+
+1. Extend ESLint config to cover whole App Services runtime
+1. bundle ESLint config in a [shareable config](https://eslint.org/docs/latest/developer-guide/shareable-configs)
+1. Do all the TypeScript typing in `app-services-globals.d.ts`
+1. create a shareable tsconfig && move to `jsconfig.json` file (i need to validate how jsconfig.json works...learned [this is a thing](https://code.visualstudio.com/docs/languages/jsconfig#_using-webpack-aliases) today)
+1. look at how to elegantly publish and add to project
