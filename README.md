@@ -6,7 +6,7 @@ enhance the developer experience of using Atlas Functions.
 How it works:
 
 - Uses ESLint to add App Services custom global modules and enforce runtime constraints
-- Use TypeScript to provide type-ahead for App Services global variables
+- Uses TypeScript to provide type-ahead for App Services global variables
 
 **Note**: This was only tested with my VSCode set up, with my plugins. Not sure how it'd work in other editors.
 I assume it'll work with most other JavaScript developers' setups, but should be tested out.
