@@ -9,11 +9,11 @@ type AppServicesContext = {
   services: AppServices;
   user: AppUser;
   values: AppValues;
+  runningAsSystem: AppRunningAsSystem;
 };
 
 /**
  * Access metadata about the app running the function.
- * @prop {string} id - string object ref
  */
 type AppMetadata = {
   /** The unique internal ID of the App that contains the Function.
@@ -204,9 +204,61 @@ interface AppHttpCookies {
 /**
  * Describes the incoming request that triggered a function call.
  */
-type AppRequest = {
-  // TODO
-};
+interface AppRequest {
+  /**
+   * The IP address of the client that issued the Function request.
+   */
+  remoteIPAddress: string;
+  /**
+   * An object where each field maps to a type of HTTP Header
+   * that was included in the request that caused the function to execute.
+   * The value of each field is an array of strings where each string maps
+   * to a header of the specified type that was included in the request.
+   *
+   * @example
+   * {
+   *   "requestHeaders": {
+   *   "Content-Type": ["application/json"],
+   *   "Cookie": [
+   *      "someCookie=someValue",
+   *      "anotherCookie=anotherValue"
+   *    ]
+   * }
+}
+   */
+  requestHeaders: AppHttpHeader;
+  /**
+   * In HTTPS Endpoint Functions, the URL of the endpoint.
+   */
+  webhookUrl: string | undefined;
+  /**
+   * In HTTPS Endpoint Functions, the HTTP method of the request that called the Endpoint.
+   */
+  httpMethod: string | undefined;
+  /** The query string attached to the incoming HTTP request.
+   * All query parameters appear in the same order as they were specified.
+   *
+   * For security reasons, Atlas App Services automatically removes any query string
+   * key/value pair where the key is secret. For example, if an incoming request
+   * has the query string `?secret=hello&someParam=42` then the `rawQueryString`
+   * for that request is `"someParam=42"`.
+   */
+  rawQueryString: string;
+  /**
+   * The URL of the page from which the request was sent.
+   * This value is derived from the HTTP `Referer` header.
+   * If the request did not include a `Referer` header then this is `undefined`.
+   */
+  httpReferrer: string | undefined;
+  /**
+   * Characteristic information that identifies the source of the request,
+   * such as the software vendor, operating system, or application type.
+   *
+   * This value is derived from the HTTP `User-Agent` header.
+   * If the request did not include a `User-Agent` header then this is `undefined`.
+   */
+  httpUserAgent: string | undefined;
+}
 
 /**
  * Exposes client objects that can access data sources and services.
@@ -225,5 +277,26 @@ type AppUser = {
  * Contains static global values.
  */
 type AppValues = {
-  // TODO
+  /**
+   * Gets the data associated with the provided value name or `undefined`
+   * if no such value exists. This data is either a plain text JSON value
+   * or a secret exposed through a value.
+   *
+   * @param valueName - The name of the value.
+   * @example
+   * exports = function() {
+   *   // Get a global value (or `undefined` if no value has the specified name)
+   *   const theme = context.values.get("theme");
+   *   console.log(theme.colors)     // Output: { red: "#ee1111", blue: "#1111ee" }
+   *   console.log(theme.colors.red) // Output: "#ee1111"
+   * };
+   *
+   */
+  get: (valueName: string) => any | undefined;
 };
+
+/**
+ * Evaluates to a boolean that is `true` if the function is running as a system user
+ * and `false` otherwise.
+ */
+type AppRunningAsSystem = () => boolean;
