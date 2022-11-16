@@ -1,0 +1,22 @@
+{
+  "name": "aas-ts",
+  "version": "1.0.0",
+  "description": "This project is a prototype showing how you can use ESLint and TypeScript to enhance the developer experience of using Atlas Functions.",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mongodben/app-services-local-dx.git"
+  },
+  "keywords": [],
+  "author": "@mongodben",
+  "bugs": {
+    "url": "https://github.com/mongodben/app-services-local-dx/issues"
+  },
+  "homepage": "https://github.com/mongodben/app-services-local-dx#readme",
+  "devDependencies": {
+    "atlas-function-types": "file:../atlas-function-types",
+    "atlas-functions": "file: ../atlas-function-types"
+  }
+}

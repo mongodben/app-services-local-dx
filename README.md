@@ -15,16 +15,17 @@ I assume it'll work with most other JavaScript developers' setups, but should be
 
 1. Clone this repo `git clone https://github.com/mongodben/app-services-local-dx.git`
 1. Open project in VSCode
-1. Go to file `app-services-function-example.js`
+1. In the `example` directory, run `npm install`
+1. Go to file `example/app-services-function-example.js`
 1. You should see ESLint applying rules and VSCode Intellisense working
 
 ## Files
 
-- `tsconfig.js` - TypeScript config, specifying that runs on standard JS files
-- `app-services-globals.d.ts` - TypeScript definitions for global variables.
-  used by `tsconfig.js` and applied to `app-services-function-example.js`.
-- `.eslintrc.js` - ESLint config, specifying custom globals and runtime rules
-- `app-services-function-example.js` - example function file showing ESLlint working
+- `atlas-function-types` - TypeScript config package, specifying that runs on standard JS files
+- `example/.eslintrc.js` - ESLint config, specifying custom globals and runtime rules
+  - Note: this should be made an ESLint plugin at some point
+- `example/jsconfig.json` - Configuring the JavaScript to use the TypeScript types
+- `example/package.json` - Project config importing TS rules from `atlas-function-types`
 
 All these files are annotated with comments showing what's going on.
 
