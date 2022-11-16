@@ -35,6 +35,6 @@ You can find all relevant code by searching for comments beginning with `LOOK_AT
 
 1. Extend ESLint config to cover whole App Services runtime
 1. bundle ESLint config in a [shareable config](https://eslint.org/docs/latest/developer-guide/shareable-configs)
-1. Do all the TypeScript typing in `app-services-globals.d.ts`
-1. create a shareable tsconfig && move to `jsconfig.json` file (i need to validate how jsconfig.json works...learned [this is a thing](https://code.visualstudio.com/docs/languages/jsconfig#_using-webpack-aliases) today)
+1. Do all the TypeScript typing
+1. ~create a shareable tsconfig && move to `jsconfig.json` file (i need to validate how jsconfig.json works...learned [this is a thing](https://code.visualstudio.com/docs/languages/jsconfig#_using-webpack-aliases) today)~
 1. look at how to elegantly publish and add to project
