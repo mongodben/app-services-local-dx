@@ -16,7 +16,6 @@
   },
   "homepage": "https://github.com/mongodben/app-services-local-dx#readme",
   "devDependencies": {
-    "atlas-function-types": "file:../atlas-function-types",
-    "atlas-functions": "file: ../atlas-function-types"
+    "atlas-function-types": "file:../atlas-function-types"
   }
 }

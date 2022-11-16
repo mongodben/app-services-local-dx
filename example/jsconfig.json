@@ -6,7 +6,7 @@
     "checkJs": true
   },
   "typeAcquisition": {
-    "include": ["atlas-functions"]
+    "include": ["atlas-functions-types"]
   },
   "exclude": ["node_modules", "**/node_modules/*"]
 }
