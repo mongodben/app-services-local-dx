@@ -1,19 +1,52 @@
+import { JSON } from "./json";
+
 /**
- * Atlas Functions have access to a global context object that contains metadata
- * for the incoming requests and provides access to components and services
- * that you've configured in your App Services App.
+ * @category Global Variables
+ * @inheritDoc AppServicesContext
  */
 declare var context: AppServicesContext;
 
+/**
+ * @category Global Variables
+ * @inheritDoc AppServicesJSON */
+declare var json: JSON;
+
+/**
+ * @category Global Variables
+ */
+declare var ejson: object;
+/**
+ * @category Global Variables
+ */
+declare var bson: object;
+/**
+ * @category Global Variables
+ */
+declare var utils: object;
+
+/**
+ * Atlas Functions have access to a global `context` object that contains metadata
+ * for the incoming requests and provides access to components and services
+ * that you've configured in your App Services App.
+ */
 type AppServicesContext = {
+  /** @inheritDoc AppMetadata */
   app: AppMetadata;
+  /** @inheritDoc AppFunctions */
   functions: AppFunctions;
+  /** @inheritDoc AppEnvironment */
   environment: AppEnvironment;
+  /** @inheritDoc AppRequest */
   http: AppHttpClient;
+  /** @inheritDoc AppRequest */
   request: AppRequest;
+  /** @inheritDoc AppServices */
   services: AppServices;
+  /** @inheritDoc AppUser */
   user: AppUser;
+  /** @inheritDoc AppValues */
   values: AppValues;
+  /** @inheritDoc AppRunningAsSystem */
   runningAsSystem: AppRunningAsSystem;
 };
 
