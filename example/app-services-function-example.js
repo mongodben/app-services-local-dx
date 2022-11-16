@@ -7,6 +7,8 @@ async function myFunction() {
   // AND has type ahead capability gracias a TypeScript
   const appId = context.app.clientAppId;
   await context.functions.execute("foo");
+  const val = context.values.get("myVal");
+
   return appId;
 }
 

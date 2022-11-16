@@ -17,7 +17,7 @@ type AppServicesContext = {
  */
 type AppMetadata = {
   /** The unique internal ID of the App that contains the Function.
-   * @example"60c8e59866b0c33d14ee634a"
+   * @example "60c8e59866b0c33d14ee634a"
    */
   id: string;
   /** The unique Client App ID for the App that contains the Function.
@@ -59,10 +59,12 @@ type AppFunctions = {
    * @param {string} functionName - The name of the Function.
    * @param {...any} args - A variadic list of arguments to pass to the function. Each function parameter maps to a separate, comma-separated argument.
    * @example
-   *   // difference: subtracts b from a using the sum function
-   *   exports = function(a, b) {
-   *     return context.functions.execute("sum", a, -1 * b);
-   *   };
+   * ```js
+   * // difference: subtracts b from a using the sum function
+   * exports = function(a, b) {
+   *   return context.functions.execute("sum", a, -1 * b);
+   * };
+   * ```
    */
   execute(functionName: string, ...args): Promise<any>;
 };
@@ -75,10 +77,12 @@ type AppEnvironment = {
   tag: "" | "development" | "testing" | "qa" | "production";
   /** An object where each field maps the name of an environment value to its value in the current environment.
    * @example
+   * ```js
    * // Gets the `baseUrl` environment value in the given environment.
    * exports = async function() {
    *   const baseUrl = context.environment.values.baseUrl
    * };
+   * ```
    */
   values: object;
 };
@@ -95,6 +99,7 @@ type AppHttpClient = {
 
 // TODO: there's some funky either/or logic here with using `url` vs. building out
 // the URL. for more info, see https://docs-atlas-staging.mongodb.com/atlas-app-services/docsworker-xlarge/DOCSP-15344/services/http-actions/http.get/#alternative-url-parameters
+// TODO: resume here
 interface AppHttpGetArg {
   /** If you need to specify the individual components of the request's target URL,
    * omit the `url` field and specify the components as root-level fields
@@ -102,7 +107,8 @@ interface AppHttpGetArg {
    *
    * `<scheme>://<host>/<path>?<query>#<fragment>`
    */
-  url: string;
+  url?: string;
+  // TODO: `headers` and `cookies` both seem wrong here
   headers?: object;
   cookies?: string;
   digestAuth?: boolean;
@@ -112,22 +118,28 @@ interface AppHttpGetArg {
    * The URL scheme.
    * @default "http"
    * @example
+   * ```js
    * // https://www.example.com/
    * { host: "www.example.com" }
+   * ```
    */
   scheme?: "https" | "http";
   /**
    * The hostname of the target resource.
    * @example
+   * ```js
    * // https://www.example.com/
    * { host: "www.example.com" }
+   * ```
    */
   host?: string;
   /**
    * The path of the target resource.
    * @example
+   * ```js
    * // https://www.example.com/api/v1/users
    * { path: "/api/v1/users" }
+   * ```
    */
   path?: string;
   /**
@@ -135,6 +147,7 @@ interface AppHttpGetArg {
    * The value of each field is an array of strings that contains all arguments
    * for the parameter.
    * @example
+   * ```js
    * // https://www.example.com/?id=8675309&color=red&color=blue
    * {
    *   query: {
@@ -142,16 +155,19 @@ interface AppHttpGetArg {
    *     "color": ["red", "blue"]
    *   }
    * }
+   * ```
    */
   query?: { [key: string]: string[] };
   /**
    * The URL fragment. This portion of the URL includes everything
    * after the hash (`#`) symbol.
    * @example
+   * ```js
    * // https://www.example.com/?id=8675309#someFragment
    * { fragment: "someFragment" }
+   * ```
    */
-  fragment: string;
+  fragment?: string;
   /**
    * The username with which to authenticate the request.
    * Typically, users utilize this argument with the `password` argument.
@@ -181,9 +197,11 @@ interface AppHttpGetReturnValue {
  * A document where each field name corresponds to a type of HTTP header
  * and each field value is an array of one or more string values for that header.
  * @example
+ * ```js
  * {
  *    "Content-Type": [ "application/json" ]
  * }
+ * ```
  * */
 interface AppHttpHeader {
   [key: string]: string[];
@@ -193,9 +211,11 @@ interface AppHttpHeader {
  * A document where each field name corresponds to a cookie name,
  * and each field value is that cookie's string value.
  * @example
+ * ```js
  * {
  *   "favoriteTeam": "Chicago Cubs"
  * }
+ * ```
  */
 interface AppHttpCookies {
   [key: string]: string;
@@ -216,6 +236,7 @@ interface AppRequest {
    * to a header of the specified type that was included in the request.
    *
    * @example
+   * ```js
    * {
    *   "requestHeaders": {
    *   "Content-Type": ["application/json"],
@@ -223,8 +244,9 @@ interface AppRequest {
    *      "someCookie=someValue",
    *      "anotherCookie=anotherValue"
    *    ]
+   *   }
    * }
-}
+   * ```
    */
   requestHeaders: AppHttpHeader;
   /**
@@ -284,13 +306,14 @@ type AppValues = {
    *
    * @param valueName - The name of the value.
    * @example
+   * ```js
    * exports = function() {
    *   // Get a global value (or `undefined` if no value has the specified name)
    *   const theme = context.values.get("theme");
    *   console.log(theme.colors)     // Output: { red: "#ee1111", blue: "#1111ee" }
    *   console.log(theme.colors.red) // Output: "#ee1111"
    * };
-   *
+   * ```
    */
   get: (valueName: string) => any | undefined;
 };
