@@ -1,3 +1,8 @@
+/**
+ * Atlas Functions have access to a global context object that contains metadata
+ * for the incoming requests and provides access to components and services
+ * that you've configured in your App Services App.
+ */
 declare var context: AppServicesContext;
 
 type AppServicesContext = {
