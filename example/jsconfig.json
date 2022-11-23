@@ -1,12 +1,10 @@
 {
-  // LOOK_AT_ME:
-  // Makes TS lint JS files
   "compilerOptions": {
     "allowJs": true,
     "checkJs": true
   },
   "typeAcquisition": {
-    "include": ["atlas-functions-types"]
+    "include": ["atlas-function-types"]
   },
   "exclude": ["node_modules", "**/node_modules/*"]
 }

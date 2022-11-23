@@ -3,14 +3,8 @@
   "version": "1.0.0",
   "types": "./lib/main.d.ts",
   "scripts": {
-    "doc": "npx typedoc lib/main.d.ts",
+    "doc": "npx typedoc lib",
     "publish": "npm run doc && gh-pages -d docs"
-  },
-  "typedoc": {
-    "entryPoint": "./lib/main.d.ts",
-    "readmeFile": "./README.md",
-    "displayName": "Atlas Function Types",
-    "tsconfig": "./tsconfig.json"
   },
   "devDependencies": {
     "gh-pages": "^4.0.0"
