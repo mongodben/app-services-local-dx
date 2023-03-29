@@ -5,7 +5,7 @@ async function myFunction() {
   // LOOK_AT_ME:
   // context object is accepted by ESLint
   // AND has type ahead capability gracias a TypeScript
-  const appId = context.app.clientAppId;
+  const appId = context.functions.execute("foo");
   await context.functions.execute("foo");
   const val = context.values.get("myVal");
 
